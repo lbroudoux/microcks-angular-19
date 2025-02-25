@@ -18,6 +18,7 @@ import { NgIf, NgFor, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 /*
 import {
   Notification,
@@ -36,6 +37,8 @@ import {
 } from 'patternfly-ng/filter';
 */
 
+import { BlurOnClickDirective } from '../../components/blur-on-click.directive';
+import { ConfirmDeleteDialogComponent } from '../../components/confirm-delete/confirm-delete.component';
 import { LabelListComponent } from '../../components/label-list/label-list.component';
 
 import { Api, Service, ServiceType } from '../../models/service.model';
@@ -47,7 +50,10 @@ import { ConfigService } from '../../services/config.service';
   selector: 'app-services-page',
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.css'],
-  imports: [LabelListComponent, NgIf, NgFor, DatePipe]
+  imports: [
+    ConfirmDeleteDialogComponent, LabelListComponent, BlurOnClickDirective,
+    BsDropdownModule, NgIf, NgFor, DatePipe
+  ]
 })
 export class ServicesPageComponent implements OnInit {
   @ViewChild('wizardTemplate', { static: true })

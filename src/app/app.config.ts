@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations'
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 
@@ -12,7 +13,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    BsModalService,
-    AuthenticationServiceProvider
-  ]
+    provideAnimations(),
+    AuthenticationServiceProvider,
+    BsModalService
+  ],
 };

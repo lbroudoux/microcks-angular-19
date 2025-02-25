@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChildren, QueryList, Provider } from '@angular/core';
 import { NgIf } from '@angular/common';
 
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-confirm-delete-dialog',
   templateUrl: 'confirm-delete.component.html',
-  imports: [NgIf]
+  imports: [NgIf, ModalModule]
 })
 export class ConfirmDeleteDialogComponent {
 
