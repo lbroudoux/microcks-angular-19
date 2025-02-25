@@ -2,6 +2,7 @@
   "name": "webapp-new",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -21,6 +22,7 @@
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
     "ngx-bootstrap": "^19.0.2",
+    "patternfly": "^3.59.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -38,5 +40,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.7.2"
+  },
+  "resolutions": {
+    "jquery": "^3.7.1",
+    "bootstrap": "^5.3.3"
   }
 }

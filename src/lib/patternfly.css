@@ -1,0 +1,415 @@
+/* Global style elements */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.66666667;
+  color: #363636;
+  background-color: #fff;
+}
+img {
+  vertical-align: middle;
+  border: 0;
+}
+
+/* Font Awesome elements */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('./fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('./fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('./fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('./fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('./fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('./fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px / 1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.fa-2x {
+  font-size: 2em;
+}
+.fa-3x {
+  font-size: 3em;
+}
+.fa-4x {
+  font-size: 4em;
+}
+.fa-5x {
+  font-size: 5em;
+}
+.fa-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+.fa-ul > li {
+  position: relative;
+}
+.fa-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+.fa-li.fa-lg {
+  left: -1.85714286em;
+}
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eee;
+  border-radius: .1em;
+}
+.fa-pull-left {
+  float: left;
+}
+.fa-pull-right {
+  float: right;
+}
+.fa.fa-pull-left {
+  margin-right: .3em;
+}
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+
+.fa-dashboard:before, .fa-tachometer:before {
+  content: "\f0e4";
+}
+
+/* Layouts elemments */
+.layout-pf, .layout-pf body {
+  min-height: 100%;
+}
+
+/* Navigation bar elements */
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.navbar-pf-vertical {
+  background-color: #1d1d1d;
+  border: none;
+  border-radius: 0;
+  border-top: 2px solid #39a5dc;
+  margin-bottom: 0;
+}
+.navbar-collapse {
+  padding-right: 20px;
+  padding-left: 20px;
+  overflow-x: visible;
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+  -webkit-overflow-scrolling: touch;
+}
+.navbar-toggle {
+  position: relative;
+  float: right;
+  padding: 9px 10px;
+  margin-right: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 1px;
+}
+.navbar-pf-vertical .navbar-toggle {
+  border: 0;
+  display: block;
+  float: left;
+  margin: 13px 15px;
+}
+.navbar-pf-vertical .navbar-toggle .icon-bar {
+  background: #d1d1d1;
+}
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+}
+.navbar-toggle .icon-bar+.icon-bar {
+  margin-top: 4px;
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.navbar-brand>img {
+  display: block;
+}
+.navbar-pf-vertical .navbar-toggle+.navbar-brand {
+  margin-left: 0;
+}
+.navbar-pf-vertical .navbar-brand {
+  color: #fff;
+  height: auto;
+  margin: 0 0 0 25px;
+  min-height: 35px;
+  padding: 11px 0 12px;
+}
+.navbar-pf-vertical .navbar-brand .navbar-brand-icon {
+  display: inline-block;
+  margin: 0 15px 0 0;
+  max-height: 35px;
+}
+.navbar-nav {
+  margin: 7.5px -20px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav>li {
+  position: relative;
+  display: block;
+}
+
+.nav-pf-vertical {
+  background: #292e34;
+  border-right: 1px solid #292e34;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 60px;
+  width: 200px;
+  z-index: 1030;
+}
+
+.nav-pf-vertical .list-group-item {
+  background-color: transparent;
+  border-color: #030303;
+  padding: 0;
+}
+.nav-pf-vertical .list-group-item>a {
+  background-color: transparent;
+  color: #d1d1d1;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  height: 63px;
+  line-height: 26px;
+  padding: 17px 20px 17px 25px;
+  position: relative;
+  white-space: nowrap;
+  width: 200px;
+}
+.nav-pf-vertical .list-group-item.active>a, .nav-pf-vertical .list-group-item:hover>a, .nav-pf-vertical .list-group-item>a:focus {
+  background-color: #393f44;
+  color: #fff;
+  font-weight: 600;
+}
+.nav-pf-vertical .list-group-item>a .fa, .nav-pf-vertical .list-group-item>a .fab, .nav-pf-vertical .list-group-item>a .fal, .nav-pf-vertical .list-group-item>a .far, .nav-pf-vertical .list-group-item>a .fas, .nav-pf-vertical .list-group-item>a .glyphicon, .nav-pf-vertical .list-group-item>a .pficon {
+  color: #72767b;
+  float: left;
+  font-size: 20px;
+  line-height: 26px;
+  margin-right: 10px;
+  text-align: center;
+  width: 24px;
+}
+.nav-pf-vertical .list-group-item.active>a .fa, .nav-pf-vertical .list-group-item.active>a .fab, .nav-pf-vertical .list-group-item.active>a .fal, .nav-pf-vertical .list-group-item.active>a .far, .nav-pf-vertical .list-group-item.active>a .fas, .nav-pf-vertical .list-group-item.active>a .glyphicon, .nav-pf-vertical .list-group-item.active>a .pficon, .nav-pf-vertical .list-group-item:hover>a .fa, .nav-pf-vertical .list-group-item:hover>a .fab, .nav-pf-vertical .list-group-item:hover>a .fal, .nav-pf-vertical .list-group-item:hover>a .far, .nav-pf-vertical .list-group-item:hover>a .fas, .nav-pf-vertical .list-group-item:hover>a .glyphicon, .nav-pf-vertical .list-group-item:hover>a .pficon, .nav-pf-vertical .list-group-item>a:focus .fa, .nav-pf-vertical .list-group-item>a:focus .fab, .nav-pf-vertical .list-group-item>a:focus .fal, .nav-pf-vertical .list-group-item>a:focus .far, .nav-pf-vertical .list-group-item>a:focus .fas, .nav-pf-vertical .list-group-item>a:focus .glyphicon, .nav-pf-vertical .list-group-item>a:focus .pficon {
+  color: #39a5dc;
+}
+
+@supports (display:flex) {
+  .nav-pf-vertical .list-group-item>a {
+    display: flex;
+    padding-right: 0;
+  }
+}
+
+.list-group {
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+.list-group .list-group-item:first-child {
+  border-top: 0;
+}
+
+.list-group-item {
+  border-left: 0;
+  border-right: 0;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #f5f5f5;
+}
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  z-index: 2;
+  color: #fff;
+  background-color: #39a5dc;
+  border-color: #39a5dc;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.dropdown, .dropup {
+  position: relative;
+}
+
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Adding the 3 below breaks everything because we lack ::before and ::after in DOM ... */
+.btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+  clear: both;
+}
+
+.btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+  display: table;
+  content: " ";
+}
+
+:after, :before {
+  box-sizing: border-box;
+}
+/* Eod of the 3 */
+
+/* Bootstrap class customization */
+.container-fluid {
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 1px;
+}
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #f1f1f1;
+}
+
+.row {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.collapse.in {
+  display: block;
+}
+.collapse {
+  display: none;
+}
+
+/* from patternfly-additions.css */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.navbar-pf-vertical .navbar-iconic {
+  margin-right: 0;
+}
+
+.nav-pf-vertical .list-group {
+  border-top: 0;
+  margin-bottom: 0;
+}
+
+.layout-pf.layout-pf-fixed .container-pf-nav-pf-vertical {
+  margin-left: 200px;
+}
+.layout-pf.layout-pf-fixed.transitions .container-pf-nav-pf-vertical {
+  transition: all .2s cubic-bezier(.35,0,.25,1);
+}
+
+.container-cards-pf {
+  margin-top: 20px;
+}
+
+/* @media should be after to allow override? */
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 1px;
+  }
+  .navbar-header {
+    float: left;
+  }
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-toggle {
+    display: none;
+  }
+  .navbar-right {
+    float: right !important;
+    float: right;
+    margin-right: -20px;
+  }
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav>li {
+    float: left;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
