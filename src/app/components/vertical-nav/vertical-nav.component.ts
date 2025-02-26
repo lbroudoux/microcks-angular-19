@@ -23,7 +23,7 @@ import {
 } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
 
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -48,7 +48,7 @@ declare let $: any;
   templateUrl: './vertical-nav.component.html',
   styleUrls: ['./vertical-nav.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, NgIf, ModalModule]
+  imports: [AsyncPipe, NgIf, ModalModule, RouterLink],
 })
 export class VerticalNavComponent implements OnInit, AfterViewInit {
   //aboutConfig: AboutModalConfig;
@@ -162,9 +162,9 @@ export class VerticalNavComponent implements OnInit, AfterViewInit {
   public getPreferencesLink(): string {
     if (this.config.authType() === 'keycloakjs') {
       const keycloakSvc = this.authService as KeycloakAuthenticationService;
-      return keycloakSvc.getRealmUrl() + "/account/?referrer=microcks-app-js";
+      return keycloakSvc.getRealmUrl() + '/account/?referrer=microcks-app-js';
     }
-    return "";
+    return '';
   }
 
   public logout(): void {
