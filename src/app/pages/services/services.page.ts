@@ -13,12 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
+import {
+  Component,
+  inject,
+  model,
+  OnInit,
+  signal,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 /*
 import {
   Notification,
@@ -41,19 +49,34 @@ import { BlurOnClickDirective } from '../../components/blur-on-click.directive';
 import { ConfirmDeleteDialogComponent } from '../../components/confirm-delete/confirm-delete.component';
 import { LabelListComponent } from '../../components/label-list/label-list.component';
 
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Api, Service, ServiceType } from '../../models/service.model';
 import { IAuthenticationService } from '../../services/auth.service';
-import { ServicesService } from '../../services/services.service';
 import { ConfigService } from '../../services/config.service';
+import { ServicesService } from '../../services/services.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DirectApiDialogComponent } from './dialogs/direct-api-dialog/direct-api-dialog.component';
 
 @Component({
   selector: 'app-services-page',
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.css'],
   imports: [
-    ConfirmDeleteDialogComponent, LabelListComponent, BlurOnClickDirective,
-    BsDropdownModule, NgIf, NgFor, DatePipe
-  ]
+    ConfirmDeleteDialogComponent,
+    LabelListComponent,
+    BlurOnClickDirective,
+    BsDropdownModule,
+    NgIf,
+    NgFor,
+    DatePipe,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+  ],
 })
 export class ServicesPageComponent implements OnInit {
   @ViewChild('wizardTemplate', { static: true })
@@ -70,6 +93,10 @@ export class ServicesPageComponent implements OnInit {
   repositoryFilter: string | null = null;
   //notifications: Notification[];
 
+  readonly animal = signal('');
+  readonly name = model('');
+  readonly dialog = inject(MatDialog);
+
   html = '';
 
   constructor(
@@ -83,7 +110,7 @@ export class ServicesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-   //this.notifications = this.notificationService.getNotifications();
+    //this.notifications = this.notificationService.getNotifications();
 
     const filterFieldsConfig = [];
     if (this.hasRepositoryFilterFeatureEnabled()) {
@@ -296,8 +323,12 @@ export class ServicesPageComponent implements OnInit {
   }
   */
 
-  openCreateDirectAPI(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+  openCreateDirectApiDialog(): void {
+    this.dialog.open(DirectApiDialogComponent, {
+      maxWidth: '750px',
+      data: { save: this.createDirectAPI.bind(this) },
+    });
+
   }
 
   createDirectAPI(apiType: ServiceType, api: Api): void {
