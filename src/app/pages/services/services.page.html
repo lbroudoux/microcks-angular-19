@@ -9,17 +9,13 @@
 <h1>
   APIs &amp; Services
   <div class="pull-right">
-    <button class="btn btn-primary" (click)="openCreateDirectAPI(wizardTemplate)">
+    <button class="btn btn-primary" (click)="openCreateDirectApiDialog()">
       <span class="fa fa-plus"></span> Add Direct API
     </button>
   </div>
 </h1>
 <small> These are the APIs | Services managed by Microcks. You can discover new ones adding Import Job or creating a new
   Direct API...</small>
-
-<ng-template #wizardTemplate>
-  <!-- <app-direct-api-wizard></app-direct-api-wizard> -->
-</ng-template>
 
 <div class="container-fluid">
   <div id="pf-list-standard" class="list-group list-view-pf list-view-pf-view">
