@@ -29,10 +29,9 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "./node_modules/patternfly/dist/css/patternfly.min.css",
               "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
-              //"./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              //"src/lib/patternfly.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -99,6 +98,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": []
