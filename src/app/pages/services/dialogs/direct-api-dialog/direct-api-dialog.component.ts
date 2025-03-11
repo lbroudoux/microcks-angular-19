@@ -88,12 +88,14 @@ export class DirectApiDialogComponent {
   save() {
     // TODO pass data via close
     this.close();
+    /*
     this.data.save(this.selectedApiType! as ServiceType, {
       name: this.apiPropertiesGroup.value.name!,
       version: this.apiPropertiesGroup.value.version!,
       resource: this.apiPropertiesGroup.value.resource!,
       referencePayload: this.referencePayloadGroup.value.referencePayload!,
     });
+    */
   }
 
   changeApiType(value: keyof typeof API_TYPE) {

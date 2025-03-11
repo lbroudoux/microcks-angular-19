@@ -9,8 +9,11 @@
 <h1>
   APIs &amp; Services
   <div class="pull-right">
-    <button class="btn btn-primary" (click)="openCreateDirectApiDialog()">
+    <button class="btn btn-primary" (click)="openCreateDirectAPI()">
       <span class="fa fa-plus"></span> Add Direct API
+    </button>&nbsp;
+    <button class="btn btn-primary" (click)="openCreateDirectApiDialogNew()">
+      <span class="fa fa-plus"></span> Add Direct API New
     </button>
   </div>
 </h1>
@@ -21,7 +24,7 @@
   <div id="pf-list-standard" class="list-group list-view-pf list-view-pf-view">
     <div class="toolbar-pf">
       <div class="col-sm-12">
-        <!-- <pfng-toolbar [config]="toolbarConfig" (onFilterChange)="handleFilter($event)"></pfng-toolbar> -->
+        <pfng-toolbar [config]="toolbarConfig" (onFilterChange)="handleFilter($event)"></pfng-toolbar>
       </div>
     </div>
     <div *ngFor="let service of services" class="list-group-item">
@@ -80,7 +83,7 @@
             </button>
             <ul id="dropdown-actions" *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
               <!-- <li><a>Edit</a></li> -->
-              <li><a blurOnClick (click)="confirmDeleteDialog.open(service)">Delete</a></li>
+              <li><a (click)="confirmDeleteDialog.open(service)">Delete</a></li>
             </ul>
           </div>
         </div>
@@ -93,11 +96,9 @@
     <span [innerHtml]="html"></span>
   </ng-template>
 
-  <!---
   <pfng-pagination [config]="paginationConfig" (onPageNumberChange)="handlePageNumber($event)"
     (onPageSizeChange)="handlePageSize($event)">
   </pfng-pagination>
-  -->
 </div>
 
 

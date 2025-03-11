@@ -16,6 +16,7 @@
 import type { Metadata } from "./commons.model";
 
 export type Api = {
+  type: ServiceType;
   name: string;
   version: string;
   resource: string;
