@@ -5,9 +5,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 
+import { NotificationService } from './components/patternfly-ng/notification';
+
 import { routes } from './app.routes';
 import { AuthenticationServiceProvider } from './services/auth.service.provider';
 import { ConfigService } from './services/config.service';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     AuthenticationServiceProvider,
     BsModalService,
+    NotificationService,
     ConfigService,
     provideAppInitializer(() => {
       const configService = inject(ConfigService);

@@ -32,14 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-/*
-import {
-  Notification,
-  NotificationEvent,
-  NotificationService,
-  NotificationType,
-} from 'patternfly-ng/notification';
-*/
+
 import { PaginationConfig, PaginationEvent, PaginationModule } from '../../components/patternfly-ng/pagination';
 import { ToolbarConfig, ToolbarModule } from '../../components/patternfly-ng/toolbar';
 import {
@@ -50,6 +43,14 @@ import {
   Filter,
   FilterQuery,
 } from '../../components/patternfly-ng/filter';
+import {
+  Notification,
+  NotificationEvent,
+  NotificationService,
+  NotificationType,
+  ToastNotificationListComponent,
+} from '../../components/patternfly-ng/notification';
+
 
 import { ConfirmDeleteDialogComponent } from '../../components/confirm-delete/confirm-delete.component';
 import { LabelListComponent } from '../../components/label-list/label-list.component';
@@ -78,7 +79,8 @@ import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
     FormsModule,
     MatButtonModule,
     PaginationModule,
-    ToolbarModule
+    ToolbarModule,
+    ToastNotificationListComponent,
   ],
 })
 export class ServicesPageComponent implements OnInit {
@@ -94,7 +96,7 @@ export class ServicesPageComponent implements OnInit {
   paginationConfig: PaginationConfig = new PaginationConfig;
   nameFilterTerm: string | null = null;
   repositoryFilter: string | null = null;
-  //notifications: Notification[];
+  notifications: Notification[] = [];
 
   readonly animal = signal('');
   readonly name = model('');
@@ -105,7 +107,7 @@ export class ServicesPageComponent implements OnInit {
   constructor(
     private servicesSvc: ServicesService,
     private modalService: BsModalService,
-    //private notificationService: NotificationService,
+    private notificationService: NotificationService,
     protected authService: IAuthenticationService,
     private config: ConfigService,
     private route: ActivatedRoute,
@@ -113,7 +115,7 @@ export class ServicesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.notifications = this.notificationService.getNotifications();
+    this.notifications = this.notificationService.getNotifications();
 
     const filterFieldsConfig = [];
     if (this.hasRepositoryFilterFeatureEnabled()) {
@@ -250,30 +252,22 @@ export class ServicesPageComponent implements OnInit {
     console.log('[deleteService]: ' + JSON.stringify(service));
     this.servicesSvc.deleteService(service).subscribe({
       next: (res) => {
-        /*
         this.notificationService.message(
           NotificationType.SUCCESS,
           service.name,
           'Service has been fully deleted',
-          false,
-          null,
-          null
+          false
         );
-        */
         this.getServices();
         this.servicesCount--;
       },
       error: (err) => {
-        /*
         this.notificationService.message(
           NotificationType.DANGER,
           service.name,
           'Service cannot be deleted (' + err.message + ')',
-          false,
-          null,
-          null
+          false
         );
-        */
       },
       complete: () => console.log('Observer got a complete notification'),
     });
@@ -335,21 +329,16 @@ export class ServicesPageComponent implements OnInit {
       case ServiceType.GENERIC_REST:
         this.servicesSvc.createDirectResourceAPI(api).subscribe({
           next: (res) => {
-            /*
             this.notificationService.message(
               NotificationType.SUCCESS,
               api.name,
               'Direct REST API "' + api.name + '" has been created',
-              false,
-              null,
-              null
+              false
             );
-            */
             this.getServices();
             this.countServices();
           },
           error: (err) => {
-            /*
             this.notificationService.message(
               NotificationType.DANGER,
               api.name,
@@ -357,11 +346,8 @@ export class ServicesPageComponent implements OnInit {
                 api.name +
                 '"already exists with version ' +
                 api.version,
-              false,
-              null,
-              null
+              false
             );
-            */
           },
           complete: () => console.log('Observer got a complete notification'),
         });
@@ -369,21 +355,16 @@ export class ServicesPageComponent implements OnInit {
       case ServiceType.GENERIC_EVENT:
         this.servicesSvc.createDirectEventAPI(api).subscribe({
           next: (res) => {
-            /*
             this.notificationService.message(
               NotificationType.SUCCESS,
               api.name,
               'Direct EVENT API "' + api.name + '" has been created',
-              false,
-              null,
-              null
+              false
             );
-            */
             this.getServices();
             this.countServices();
           },
           error: (err) => {
-            /*
             this.notificationService.message(
               NotificationType.DANGER,
               api.name,
@@ -391,11 +372,8 @@ export class ServicesPageComponent implements OnInit {
                 api.name +
                 '"already exists with version ' +
                 api.version,
-              false,
-              null,
-              null
+              false
             );
-            */
           },
           complete: () => console.log('Observer got a complete notification'),
         });
@@ -410,11 +388,9 @@ export class ServicesPageComponent implements OnInit {
     }
   }
 
-  /*
   handleCloseNotification($event: NotificationEvent): void {
     this.notificationService.remove($event.notification);
   }
-  */
 
   public hasRole(role: string): boolean {
     return this.authService.hasRole(role);

@@ -9,6 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
 
@@ -22,7 +23,7 @@ import { ToolbarView } from './toolbar-view';
 import { ActionComponent } from '../action';
 import { SortComponent } from '../sort';
 import { FilterResultsComponent } from '../filter';
-import { CommonModule } from '@angular/common';
+
 
 /**
  * Toolbar component
