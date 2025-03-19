@@ -40,13 +40,29 @@
 <div class="megatron clearfix" *ngIf="isRepositoryPanelDisplayed()">
   <div class="row">
     <div class="col-md-4">
-
+      <pfng-card [config]="repositoryCardConfig">
+        <pfng-donut-chart [chartData]="repositoryDonutChartData"
+          [config]="repositoryDonutChartConfig"></pfng-donut-chart>
+      </pfng-card>
     </div>
     <div class="col-md-4">
-
+      <pfng-card [config]="topCardConfig" (onFilterSelect)="handleTopFilterSelect($event)">
+        <ol>
+          <li *ngFor="let stat of topInvocations">
+            <blockquote class="text-right top-invocation">
+              <p class="top-invocation">{{ stat.serviceName }} - {{ stat.serviceVersion }}</p>
+              <small>with {{ stat.dailyCount }} <a
+                  routerLink="['/metrics/invocations', stat.serviceName, stat.serviceVersion]">invocations</a> <i
+                  class="glyphicon glyphicon-signal"></i></small>
+            </blockquote>
+          </li>
+        </ol>
+      </pfng-card>
     </div>
     <div class="col-md-4">
-
+      <pfng-card [config]="chartCardConfig" (onFilterSelect)="handleChartFilterSelect($event)">
+        <pfng-sparkline-chart [config]="chartConfig" [chartData]="chartData"></pfng-sparkline-chart>
+      </pfng-card>
     </div>
   </div>
 </div>
@@ -54,10 +70,17 @@
 <div class="megatron clearfix" *ngIf="isTestsPanelDisplayed()">
   <div class="row">
     <div class="col-md-8">
-
+      <pfng-card [config]="testConformanceCardConfig">
+        <app-score-treemap [data]="conformanceScores" scoreAttr="score" [block]="repositoryFilterFeatureLabelKey()"
+          elements="API | Services"
+          legend="The lower score the riskier in terms of non conformance"></app-score-treemap>
+      </pfng-card>
     </div>
     <div class="col-md-4">
-
+      <pfng-card [config]="testResultsCardConfig" (onFilterSelect)="handleTestsFilterSelect($event)">
+        <pfng-donut-chart [chartData]="testResultsDonutChartData"
+          [config]="testResultsDonutChartConfig"></pfng-donut-chart>
+      </pfng-card>
     </div>
   </div>
 </div>

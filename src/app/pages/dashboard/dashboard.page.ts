@@ -19,7 +19,17 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
+import {
+  CardConfig,
+  CardFilter,
+  CardModule,
+} from '../../components/patternfly-ng/card';
+import { DonutChartConfig, DonutChartModule } from '../../components/patternfly-ng/chart';
+import { SparklineChartData, SparklineChartConfig, SparklineChartModule } from '../../components/patternfly-ng/chart/sparkline-chart';
+
+import { ScoreTreemapComponent } from '../../components/score-treemap/score-treemap.component';
 
 import { ConfigService } from '../../services/config.service';
 import { MetricsService } from '../../services/metrics.service';
@@ -31,7 +41,13 @@ import { DailyInvocations } from '../../models/metric.model';
   templateUrl: 'dashboard.page.html',
   styleUrls: ['dashboard.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf]
+  imports: [
+    CommonModule,
+    CardModule,
+    DonutChartModule,
+    ScoreTreemapComponent,
+    SparklineChartModule
+  ]
 })
 export class DashboardPageComponent implements OnInit {
   aDayLong: number = 1000 * 60 * 60 * 24;
@@ -41,9 +57,56 @@ export class DashboardPageComponent implements OnInit {
   servicesCount = 0;
   aggregatesCount = 0;
 
+  chartCardConfig: CardConfig = {
+    action: {
+      hypertext: 'View All Events',
+      iconStyleClass: 'fa fa-flag',
+    },
+    filters: [
+      { title: 'Last 50 Days', value: '50' },
+      { default: true, title: 'Last 20 Days', value: '20' },
+      { title: 'Last 10 Days', value: '10' }
+    ],
+    title: 'APIs | Services Mocks Invocations',
+  } as CardConfig;
+
+  topCardConfig: CardConfig = {
+    filters: [
+      { default: true, title: 'Today', value: 'today' },
+      { title: 'Yesterday', value: 'yesterday' }
+    ],
+    title: 'Most Used APIs | Services',
+  } as CardConfig;
+
+  repositoryCardConfig: CardConfig = {
+    title: 'APIs | Services Repository',
+  } as CardConfig;
+
+  testConformanceCardConfig: CardConfig = {
+    title: 'API | Services Conformance Risks',
+  } as CardConfig;
+
+  testResultsCardConfig: CardConfig = {
+    filters: [
+      { default: true, title: 'Last 7 Days', value: '7' },
+      { title: 'Last 15 Days', value: '15', }
+    ],
+    title: 'API | Services Tests',
+  } as CardConfig;
+
   actionsText = '';
   chartDates: any[] = ['dates'];
-
+  chartConfig: SparklineChartConfig = {
+    chartId: 'invocationsSparkline',
+    chartHeight: 150,
+    tooltipType: 'default',
+  };
+  chartData: SparklineChartData = {
+    dataAvailable: false,
+    total: 100,
+    xData: this.chartDates,
+    yData: ['used'],
+  };
 
   repositoryDonutChartData: any[] = [
     ['REST', 0],
@@ -53,11 +116,42 @@ export class DashboardPageComponent implements OnInit {
     ['GRAPH', 0],
     ['GRPC', 0],
   ];
+  repositoryDonutChartConfig: DonutChartConfig = {
+    chartId: 'repositoryDonut',
+    chartHeight: 220,
+    colors: {
+      REST: '#89bf04',
+      DIRECT: '#9c27b0',
+      SOAP: '#39a5dc',
+      EVENT: '#ec7a08',
+      GRAPH: '#e10098',
+      GRPC: '#379c9c',
+    },
+    /*
+    data: {
+      onclick: (data: any, element: any) => {
+        alert('You clicked on donut arc: ' + data.id);
+      }
+    },
+    */
+    donut: { title: 'APIs & Services' },
+    legend: { show: true },
+  };
 
   testResultsDonutChartData: any[] = [
     ['SUCCESS', 3],
     ['FAILURE', 5],
   ];
+  testResultsDonutChartConfig: DonutChartConfig = {
+    chartId: 'testsDonut',
+    chartHeight: 220,
+    colors: {
+      SUCCESS: '#7bb33d',
+      FAILURE: '#d1d1d1',
+    },
+    donut: { title: 'Tests' },
+    legend: { show: true },
+  };
 
   topInvocations: any; //DailyInvocations[];
   conformanceScores: any;
@@ -101,17 +195,25 @@ export class DashboardPageComponent implements OnInit {
       for (const key in results) {
         if (key === 'GENERIC_REST' || key === 'GENERIC_EVENT') {
           directCount += results[key];
-          this.repositoryDonutChartData.push(['DIRECT', directCount]);
+          this.addServiceCountToDonutTuple('DIRECT', results[key]);
         } else if (key === 'SOAP_HTTP') {
-          this.repositoryDonutChartData.push(['SOAP', results[key]]);
+          this.addServiceCountToDonutTuple('SOAP', results[key]);
         } else if (key === 'GRAPHQL') {
-          this.repositoryDonutChartData.push(['GRAPH', results[key]]);
+          this.addServiceCountToDonutTuple('GRAPH', results[key]);
         } else {
-          this.repositoryDonutChartData.push([key, results[key]]);
+          this.addServiceCountToDonutTuple(key, results[key]);
         }
       }
+      console.log("this.repositoryDonutChartData: ", this.repositoryDonutChartData);
       this.ref.detectChanges();
     });
+  }
+
+  private addServiceCountToDonutTuple(tupleName: string, results: number): void {
+    let tuple = this.repositoryDonutChartData.find((tuple) => tuple[0] === tupleName);
+    if (tuple) {
+      tuple[1] += results;
+    }
   }
 
   getTopInvocations(day: Date = this.today): void {
@@ -123,7 +225,6 @@ export class DashboardPageComponent implements OnInit {
 
   getInvocationsTrend(limit: number = 20): void {
     this.metricsSvc.getInvocationsStatsTrend(limit).subscribe((results) => {
-      /*
       this.chartData.dataAvailable = false;
       this.chartData.xData = ['dates'];
       this.chartData.yData = ['hits'];
@@ -141,7 +242,6 @@ export class DashboardPageComponent implements OnInit {
         }
       }
       this.chartData.dataAvailable = true;
-      */
       this.ref.detectChanges();
     });
   }
@@ -174,7 +274,6 @@ export class DashboardPageComponent implements OnInit {
         result.success ? successCount++ : failureCount++;
       });
       const ratio = successCount / results.length;
-      /*
       if (ratio > 0.66) {
         this.testResultsDonutChartConfig.colors.SUCCESS = '#7bb33d';
       } else if (ratio < 0.33) {
@@ -186,12 +285,10 @@ export class DashboardPageComponent implements OnInit {
         ['SUCCESS', successCount],
         ['FAILURE', failureCount],
       ];
-      */
       this.ref.detectChanges();
     });
   }
 
-  /*
   handleChartFilterSelect($event: CardFilter): void {
     this.getInvocationsTrend(+$event.value);
   }
@@ -207,8 +304,7 @@ export class DashboardPageComponent implements OnInit {
   handleTestsFilterSelect($event: CardFilter): void {
     this.getLatestTestsTrend(+$event.value);
   }
-  */
-
+  
   repositoryFilterFeatureLabelKey(): string {
     return this.config.getFeatureProperty('repository-filter', 'label-key');
   }
