@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import { Component, OnInit, Input } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import * as d3 from 'd3';
 import { HierarchyRectangularNode } from 'd3-hierarchy';

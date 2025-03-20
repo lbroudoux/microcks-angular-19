@@ -229,13 +229,7 @@ export class SparklineChartComponent extends ChartBase implements DoCheck, OnIni
             chartBox = chartElement.getBoundingClientRect();
             graphOffsetX = axisYElement.getBoundingClientRect().right;
 
-            console.log('chartBox', chartBox);
-            console.log('graphOffsetX', graphOffsetX);
-            console.log('chartBox.left', chartBox.left);  
-            console.log('result', center + graphOffsetX - chartBox.left - Math.floor(width / 2));
-
             x = Math.max(0, center + graphOffsetX - chartBox.left - Math.floor(width / 2));
-            console.log('x', x);
 
             // As width is now always the same, we can't use it to calculate the position.
             // Math.min() below will always return 0 so we just put a fix padding....
@@ -250,10 +244,7 @@ export class SparklineChartComponent extends ChartBase implements DoCheck, OnIni
           console.log('Error getting tooltip position', e);
         }
 
-        return {
-          top: 0,
-          left: 0
-        }
+        return { top: 0, left: 0 }
       }
     };
   }

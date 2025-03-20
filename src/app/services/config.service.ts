@@ -46,7 +46,7 @@ export class ConfigService {
 
       // Check Keycloak realm configuration.
       const keycloak = w.keycloak;
-      console.log('[ConfigService] w[\'keycloak\']: ' + JSON.stringify(w.keycloak));
+      //console.log('[ConfigService] w[\'keycloak\']: ' + JSON.stringify(w.keycloak));
       if (!keycloak || !keycloak.realm) {
         console.info('[ConfigService] No Keycloak realm found. Switching to anonymous auth type.');
         this.config.auth.type = ANONYMOUS_AUTH_TYPE;
@@ -98,7 +98,7 @@ export class ConfigService {
     const featurePromise = this.http.get<any>('/api/features/config')
       .toPromise().then(results => {
         this.config.features = results;
-        console.info('[ConfigService] Got config: ' + JSON.stringify(this.config.features));
+        //console.info('[ConfigService] Got config: ' + JSON.stringify(this.config.features));
         return results;
       });
     return featurePromise;

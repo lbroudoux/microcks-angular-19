@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import {
   Component,
   inject,
@@ -51,7 +51,6 @@ import {
   ToastNotificationListComponent,
 } from '../../components/patternfly-ng/notification';
 
-
 import { ConfirmDeleteDialogComponent } from '../../components/confirm-delete/confirm-delete.component';
 import { LabelListComponent } from '../../components/label-list/label-list.component';
 
@@ -68,11 +67,10 @@ import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.css'],
   imports: [
+    CommonModule,
     ConfirmDeleteDialogComponent,
     LabelListComponent,
     BsDropdownModule,
-    NgIf,
-    NgFor,
     DatePipe,
     MatFormFieldModule,
     MatInputModule,
@@ -189,7 +187,6 @@ export class ServicesPageComponent implements OnInit {
   }
 
   getServices(page: number = 1): void {
-    console.log("getServices called with page: " + page);
     this.servicesSvc
       .getServices(page)
       .subscribe((results) => (this.services = results));
@@ -249,12 +246,12 @@ export class ServicesPageComponent implements OnInit {
   }
 
   deleteService(service: Service) {
-    console.log('[deleteService]: ' + JSON.stringify(service));
+    //console.log('[deleteService]: ' + JSON.stringify(service));
     this.servicesSvc.deleteService(service).subscribe({
       next: (res) => {
         this.notificationService.message(
           NotificationType.SUCCESS,
-          service.name,
+          service.name, 
           'Service has been fully deleted',
           false
         );
@@ -264,12 +261,12 @@ export class ServicesPageComponent implements OnInit {
       error: (err) => {
         this.notificationService.message(
           NotificationType.DANGER,
-          service.name,
+          service.name, 
           'Service cannot be deleted (' + err.message + ')',
           false
         );
       },
-      complete: () => console.log('Observer got a complete notification'),
+      complete: () => {}, //console.log('Observer got a complete notification'),
     });
   }
 
@@ -342,14 +339,11 @@ export class ServicesPageComponent implements OnInit {
             this.notificationService.message(
               NotificationType.DANGER,
               api.name,
-              'Service or API "' +
-                api.name +
-                '"already exists with version ' +
-                api.version,
+              'Service or API "' + api.name + '"already exists with version ' + api.version,
               false
             );
           },
-          complete: () => console.log('Observer got a complete notification'),
+          complete: () => {}, //console.log('Observer got a complete notification'),
         });
         break;
       case ServiceType.GENERIC_EVENT:
@@ -375,7 +369,7 @@ export class ServicesPageComponent implements OnInit {
               false
             );
           },
-          complete: () => console.log('Observer got a complete notification'),
+          complete: () => {}, //console.log('Observer got a complete notification'),
         });
         break;
       default:

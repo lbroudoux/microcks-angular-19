@@ -34,7 +34,6 @@ import { ScoreTreemapComponent } from '../../components/score-treemap/score-tree
 import { ConfigService } from '../../services/config.service';
 import { MetricsService } from '../../services/metrics.service';
 import { ServicesService } from '../../services/services.service';
-import { DailyInvocations } from '../../models/metric.model';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -204,7 +203,6 @@ export class DashboardPageComponent implements OnInit {
           this.addServiceCountToDonutTuple(key, results[key]);
         }
       }
-      console.log("this.repositoryDonutChartData: ", this.repositoryDonutChartData);
       this.ref.detectChanges();
     });
   }
