@@ -30,7 +30,7 @@ export type ImportJob = {
   etag: string;
 
   metadata: Metadata;
-  secretRef: SecretRef;
+  secretRef?: SecretRef;
   serviceRefs: ServiceRef[];
 }
 

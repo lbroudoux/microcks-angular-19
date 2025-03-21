@@ -306,3 +306,36 @@ body {
 .padding-right-10 {
   padding-right: 10px !important;
 }
+
+/** Reajust the Material elements style on Patternly */
+.mat-stepper-horizontal {
+  background-color: #fff !important;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+}
+.mat-stepper-horizontal-line {
+  border-top-width: 1px;
+  border-top-style: solid;
+  flex: auto;
+  height: 0;
+  margin: 0 -16px;
+  min-width: 32px;
+  border-top-color: #bbb;
+}
+.mat-horizontal-content-container {
+  padding-top: 3em !important;
+}
+.mat-step-icon {
+  background-color: #fff !important;
+  border-color: #bbb !important;
+  border-style: solid !important;
+  border-width: 1px;
+  color: #bbb !important;
+}
+.mat-step-icon-selected {
+  background-color: #39a5dc !important;
+  color: #fff !important;
+}
+.mat-step-text-label {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}

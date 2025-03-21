@@ -17,6 +17,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { 
   ChangeDetectorRef, 
   Component, 
+  Injectable,
   OnInit, 
   TemplateRef, 
   ViewChild, 
@@ -59,6 +60,7 @@ import { ConfigService } from '../../services/config.service';
 import { ImportersService } from '../../services/importers.service';
 import { ServicesService } from '../../services/services.service';
 import { ArtifactUploaderDialogComponent } from './_components/uploader.dialog';
+import { ImporterWizardComponent} from './_components/importer.wizard';
 import { ServiceRefsDialogComponent } from './service-refs.dialog';
 
 @Component({
@@ -72,19 +74,18 @@ import { ServiceRefsDialogComponent } from './service-refs.dialog';
     LabelListComponent,
     BsDropdownModule,
     DatePipe,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     PaginationModule,
     ToolbarModule,
     ToastNotificationListComponent,
     TooltipModule
-  ]
+  ],
+  providers: [ImportersPageComponent]
 })
 export class ImportersPageComponent implements OnInit {
-  @ViewChild('wizardTemplate', {static: true})
-  wizardTemplate?: TemplateRef<any>;
 
   modalRef?: BsModalRef;
   importJobs?: ImportJob[];
@@ -258,19 +259,25 @@ export class ImportersPageComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
-  createImportJob(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
-  }
-  editImportJob(template: TemplateRef<any>, job: ImportJob): void {
-    this.selectedJob = job;
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
-  }
+  createImportJob(): void {
+    this.modalRef = this.modalService.show(ImporterWizardComponent, { class: 'modal-lg' });
 
-  closeImportJobWizardModal($event: any): void {
-    this.selectedJob = null;
-    if (this.modalRef) {
-      this.modalRef.hide();
-    }
+    this.modalRef.content.saveImportJobAction.subscribe((job: ImportJob) => {
+      this.saveOrUpdateImportJob(job);
+    });
+  }
+  editImportJob(job: ImportJob): void {
+    this.selectedJob = job;
+    this.modalRef = this.modalService.show(ImporterWizardComponent, { 
+      class: 'modal-lg', 
+      initialState: {
+        job: this.selectedJob
+      }
+    });
+
+    this.modalRef.content.saveImportJobAction.subscribe((job: ImportJob) => {
+      this.saveOrUpdateImportJob(job);
+    });
   }
 
   saveOrUpdateImportJob(job: ImportJob): void {

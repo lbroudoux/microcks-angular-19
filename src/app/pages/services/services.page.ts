@@ -19,9 +19,7 @@ import {
   inject,
   model,
   OnInit,
-  signal,
-  TemplateRef,
-  ViewChild,
+  signal
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -72,19 +70,17 @@ import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
     LabelListComponent,
     BsDropdownModule,
     DatePipe,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     PaginationModule,
     ToolbarModule,
     ToastNotificationListComponent,
   ],
 })
 export class ServicesPageComponent implements OnInit {
-  @ViewChild('wizardTemplate', { static: true })
-  wizardTemplate?: TemplateRef<any>;
-
+  
   modalRef?: BsModalRef;
   services?: Service[];
   servicesCount: number = 0;

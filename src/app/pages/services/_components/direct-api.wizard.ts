@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit, viewChild, ViewEncapsulation, Host, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, viewChild, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Api, ServiceType } from '../../../models/service.model';
 import { ServicesPageComponent } from '../services.page';
