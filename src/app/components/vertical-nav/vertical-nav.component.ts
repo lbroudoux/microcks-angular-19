@@ -21,17 +21,19 @@ import {
   ChangeDetectionStrategy,
   AfterViewInit,
 } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { Router, NavigationStart, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
-//import { AboutModalConfig } from 'patternfly-ng/modal/about-modal/about-modal-config';
-//import { AboutModalEvent } from 'patternfly-ng/modal/about-modal/about-modal-event';
+
+import { AboutModalConfig, AboutModalEvent, AboutModalModule } from '../patternfly-ng/modal';
 
 import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
+
 import { IAuthenticationService } from '../../services/auth.service';
 import { VersionInfoService } from '../../services/versioninfo.service';
 import { User } from '../../models/user.model';
@@ -48,10 +50,16 @@ declare let $: any;
   templateUrl: './vertical-nav.component.html',
   styleUrls: ['./vertical-nav.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, NgIf, ModalModule, RouterLink],
+  imports: [
+    AboutModalModule,
+    BsDropdownModule,
+    CommonModule,
+    ModalModule,
+    RouterLink
+  ],
 })
 export class VerticalNavComponent implements OnInit, AfterViewInit {
-  //aboutConfig: AboutModalConfig;
+  aboutConfig: AboutModalConfig = {};
   modalRef?: BsModalRef;
 
   constructor(
@@ -65,7 +73,6 @@ export class VerticalNavComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.user().subscribe((currentUser) => {
       this.versionInfoSvc.getVersionInfo().subscribe((versionInfo) => {
-        /*
         this.aboutConfig = {
           additionalInfo:
             'Microcks is Open Source mocking and testing platform for API and microservices. Visit https://microcks.io for more information.',
@@ -80,7 +87,6 @@ export class VerticalNavComponent implements OnInit, AfterViewInit {
             { name: 'User Name', value: currentUser.name },
           ],
         } as AboutModalConfig;
-        */
       });
     });
 
@@ -88,7 +94,7 @@ export class VerticalNavComponent implements OnInit, AfterViewInit {
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
         // Do something with the NavigationStart event object.
-        console.log('Navigation start event: ' + JSON.stringify(event));
+        //console.log('Navigation start event: ' + JSON.stringify(event));
         const navigationEvent = { type: 'navigationEvent', url: event.url };
         try {
           window.parent.postMessage(JSON.stringify(navigationEvent), '*');
@@ -141,11 +147,11 @@ export class VerticalNavComponent implements OnInit, AfterViewInit {
   public openAboutModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
   }
-  /*
   public closeAboutModal($event: AboutModalEvent): void {
-    this.modalRef.hide();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
-  */
 
   public user(): Observable<User> {
     return this.authService.getAuthenticatedUser();
