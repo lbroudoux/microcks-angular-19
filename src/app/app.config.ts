@@ -39,7 +39,9 @@ export const appConfig: ApplicationConfig = {
       languages: {
         json: () => import('highlight.js/lib/languages/json'),
         xml: () => import('highlight.js/lib/languages/xml'),
-        yaml: () => import('highlight.js/lib/languages/yaml')
+        yaml: () => import('highlight.js/lib/languages/yaml'),
+        groovy: () => import('highlight.js/lib/languages/groovy'),
+        bash: () => import('highlight.js/lib/languages/bash'),
       }
     })
   ],

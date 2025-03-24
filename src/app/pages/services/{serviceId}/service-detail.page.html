@@ -111,7 +111,7 @@
             first.</ng-template>
           <div class="row" *ngIf="view.service.type != 'GENERIC_REST'" style="margin-top: 10px">
             <div class="col-sm-6" style="padding-top: 8px;">
-              <a routerLink="['/tests/service', view.service.id]"><i class="glyphicon glyphicon-time"></i> View Tests
+              <a [routerLink]="['/tests/service', view.service.id]"><i class="glyphicon glyphicon-time"></i> View Tests
                 Runs</a>
             </div>
             <div class="col-sm-6">

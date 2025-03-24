@@ -21,7 +21,7 @@ export enum OAuth2GrantType {
   REFRESH_TOKEN
 }
 
-export class OAuth2ClientContext {
+export type OAuth2ClientContext = {
   clientId: string;
   clientSecret: string;
   tokenUri: string;
@@ -32,14 +32,14 @@ export class OAuth2ClientContext {
   grantType: OAuth2GrantType;
 }
 
-export class OAuth2AuthorizedClient {
+export type OAuth2AuthorizedClient = {
   grantType: OAuth2GrantType;
   principalName: string;
   tokenUri: string;
   scopes: string;
 }
 
-export class TestRequest {
+export type TestRequest = {
   serviceId: string;
   testEndpoint: string;
   runnerType: TestRunnerType;
@@ -47,7 +47,7 @@ export class TestRequest {
   oAuth2Context: OAuth2ClientContext;
 }
 
-export class TestResult {
+export type TestResult = {
   id: string;
   version: number;
   testNumber: number;
@@ -56,8 +56,8 @@ export class TestResult {
   serviceId: string;
   timeout: number;
   elapsedTime: number;
-  success = false;
-  inProgress = true;
+  success: boolean;
+  inProgress: boolean;
   runnerType: TestRunnerType;
   operationsHeaders: any;
   testCaseResults: TestCaseResult[];
@@ -65,15 +65,15 @@ export class TestResult {
   authorizedClient: OAuth2AuthorizedClient;
 }
 
-export class TestCaseResult {
-  success = false;
-  elapsedTime = -1;
+export type TestCaseResult = {
+  success: boolean;
+  elapsedTime: number;
   operationName: string;
   testStepResults: TestStepResult[];
 }
 
-export class TestStepResult {
-  success = false;
+export type TestStepResult = {
+  success: boolean;
   elapsedTime: number;
   requestName: string;
   eventMessageName: string;
@@ -81,12 +81,12 @@ export class TestStepResult {
 }
 
 export enum TestRunnerType {
-  HTTP,
-  SOAP_HTTP,
-  SOAP_UI,
-  POSTMAN,
-  OPEN_API_SCHEMA,
-  ASYNC_API_SCHEMA,
-  GRPC_PROTOBUF,
-  GRAPHQL_SCHEMA
+  HTTP = 'HTTP',
+  SOAP_HTTP = 'SOAP_HTTP',
+  SOAP_UI = 'SOAP_UI',
+  POSTMAN = 'POSTMAN',
+  OPEN_API_SCHEMA = 'OPEN_API_SCHEMA',
+  ASYNC_API_SCHEMA = 'ASYNC_API_SCHEMA',
+  GRPC_PROTOBUF = 'GRPC_PROTOBUF',
+  GRAPHQL_SCHEMA = 'GRAPHQL_SCHEMA'
 }

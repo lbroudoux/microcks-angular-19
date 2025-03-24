@@ -25,6 +25,7 @@ import { ActivatedRoute, Router, ParamMap, RouterLink } from '@angular/router';
 import { Observable, Subscription, interval } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -66,7 +67,6 @@ import { ConfigService } from '../../../services/config.service';
 import { ContractsService } from '../../../services/contracts.service';
 import { MetricsService } from '../../../services/metrics.service';
 import { ServicesService } from '../../../services/services.service';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'app-service-detail-page',
