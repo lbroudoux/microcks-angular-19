@@ -217,8 +217,14 @@ ul.unstyled {
 
 .tooltip-break {
   word-break: break-word;
-}/* You can add global styles to this file, and also import other style files */
+}
 
+/* You can add global styles to this file, and also import other style files */
+
+pre.hljs {
+  overflow-x: auto;
+  padding: 0.5em;
+}
 
 /* Angular material */
 /*

@@ -176,13 +176,12 @@
           </div>
 
           <div class="list-view-pf-actions">
-            <div class="dropdown pull-right dropdown-kebab-pf" *ngIf="allowOperationsPropertiesEdit()">
-              <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="true">
+            <div class="dropdown pull-right dropdown-kebab-pf" dropdown *ngIf="allowOperationsPropertiesEdit()">
+              <button id="dropdownKebabRight" class="btn btn-link dropdown-toggle" type="button" dropdownToggle aria-controls="dropdown-actions">
                 <span class="fa fa-ellipsis-v"></span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                <li><a routerLink="['operation', item.name]">Edit Properties</a></li>
+              <ul id="dropdown-actions" *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
+                <li><a [routerLink]="['operation', item.name]">Edit Properties</a></li>
                 <li><a (click)="openGenerateSamples(item.name)" *ngIf="allowAICopilotOnSamples()">AI Copilot Samples <i
                       class="pficon pficon-optimize"></i></a></li>
               </ul>

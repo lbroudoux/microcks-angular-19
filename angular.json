@@ -32,6 +32,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "./node_modules/patternfly/dist/css/patternfly.min.css",
               "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
+              "./node_modules/highlight.js/styles/github.min.css",
+              //"./node_modules/highlight.js/styles/github-dark.min.css",
               "src/lib/patternfly-ng.css",
               "src/styles.css"
             ],

@@ -66,6 +66,7 @@ import { ConfigService } from '../../../services/config.service';
 import { ContractsService } from '../../../services/contracts.service';
 import { MetricsService } from '../../../services/metrics.service';
 import { ServicesService } from '../../../services/services.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'app-service-detail-page',
@@ -74,6 +75,7 @@ import { ServicesService } from '../../../services/services.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
+    BsDropdownModule,
     ExchangesTabsetComponent,
     GradeIndexComponent,
     LabelListComponent,

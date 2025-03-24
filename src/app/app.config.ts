@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { provideHighlightOptions } from 'ngx-highlightjs';
 
 import { NotificationService } from './components/patternfly-ng/notification';
 
@@ -11,7 +12,6 @@ import { routes } from './app.routes';
 import { AuthenticationServiceProvider } from './services/auth.service.provider';
 import { ConfigService } from './services/config.service';
 import { AuthenticationHttpInterceptor } from './services/auth.http-interceptor';
-
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,6 +32,15 @@ export const appConfig: ApplicationConfig = {
       return configService.loadConfiguredFeatures() as Promise<unknown>;
     }),
 
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationHttpInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationHttpInterceptor, multi: true },
+    
+    provideHighlightOptions({
+      coreLibraryLoader: () => import('highlight.js/lib/core'),
+      languages: {
+        json: () => import('highlight.js/lib/languages/json'),
+        xml: () => import('highlight.js/lib/languages/xml'),
+        yaml: () => import('highlight.js/lib/languages/yaml')
+      }
+    })
   ],
 };
