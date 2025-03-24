@@ -49,7 +49,7 @@ export type Operation = {
   action: string;
   inputName: string;
   outputName: string;
-  bindings: { string: Binding[] };
+  bindings: { [key: string]: Binding };
   dispatcher: string;
   dispatcherRules: string;
   defaultDelay: number;
@@ -107,22 +107,22 @@ export type Contract = {
   mainArtifact: boolean;
 };
 export enum ContractType {
-  WSDL,
-  XSD,
-  JSON_SCHEMA,
-  SWAGGER,
-  RAML,
-  OPEN_API_SPEC,
-  OPEN_API_SCHEMA,
-  ASYNC_API_SPEC,
-  ASYNC_API_SCHEMA,
-  AVRO_SCHEMA,
-  PROTOBUF_SCHEMA,
-  PROTOBUF_DESCRIPTOR,
-  GRAPHQL_SCHEMA,
-  POSTMAN_COLLECTION,
-  SOAP_UI_PROJECT,
-  JSON_FRAGMENT,
+  WSDL = "WSDL",
+  XSD = "XSD",
+  JSON_SCHEMA = "JSON_SCHEMA",
+  SWAGGER = "SWAGGER",
+  RAML = "RAML",
+  OPEN_API_SPEC = "OPEN_API_SPEC",
+  OPEN_API_SCHEMA = "OPEN_API_SCHEMA",
+  ASYNC_API_SPEC = "ASYNC_API_SPEC",
+  ASYNC_API_SCHEMA = "ASYNC_API_SCHEMA",
+  AVRO_SCHEMA = "AVRO_SCHEMA",
+  PROTOBUF_SCHEMA = "PROTOBUF_SCHEMA",
+  PROTOBUF_DESCRIPTOR = "PROTOBUF_DESCRIPTOR",
+  GRAPHQL_SCHEMA = "GRAPHQL_SCHEMA",
+  POSTMAN_COLLECTION = "POSTMAN_COLLECTION",
+  SOAP_UI_PROJECT = "SOAP_UI_PROJECT",
+  JSON_FRAGMENT = "JSON_FRAGMENT"
 }
 
 export type Header = {
@@ -162,8 +162,7 @@ export interface EventMessage extends Message {
 }
 
 export type Exchange = {
-  type?: string;
-  eventMessage?: EventMessage;
+  type: string;
 };
 export interface UnidirectionalEvent extends Exchange {
   eventMessage: EventMessage;
@@ -175,7 +174,8 @@ export interface RequestResponsePair extends Exchange {
 
 export type ServiceView = {
   service: Service;
-  messagesMap: { string: Exchange[] };
+  //messagesMap: { string: Exchange[] };
+  messagesMap: Record<string, Exchange[]>;
 };
 
 export type GenericResource = {

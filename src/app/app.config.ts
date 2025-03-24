@@ -1,5 +1,5 @@
 import { ApplicationConfig, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withDebugTracing } from '@angular/router';
+import { provideRouter, withDebugTracing, withHashLocation } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -16,7 +16,7 @@ import { AuthenticationHttpInterceptor } from './services/auth.http-interceptor'
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withHashLocation()),
     //[provideRouter(routes), withDebugTracing()],
     provideHttpClient(
       // DI-based interceptors must be explicitly enabled.

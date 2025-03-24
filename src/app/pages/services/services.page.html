@@ -43,8 +43,7 @@
         <div class="list-view-pf-body">
           <div class="list-view-pf-description">
             <div class="list-group-item-heading serviceName">
-              <!-- <h4><a [routerLink]="[service.id]">{{ service.name }}</a></h4> -->
-              <h4><a>{{ service.name }}</a></h4>
+              <h4><a routerLink="{{service.id}}">{{ service.name }}</a></h4>
             </div>
             <div class="list-group-item-text serviceMetadata">
               <span class="label label-primary" *ngIf="service.type === 'SOAP_HTTP'">SOAP</span>
@@ -73,8 +72,7 @@
         </div>
 
         <div class="list-view-pf-actions">
-          <!-- <a [routerLink]="[service.id]"><button class="btn btn-default" type="button">Details</button></a> -->
-          <a><button class="btn btn-default" type="button">Details</button></a>
+          <a routerLink="{{service.id}}"><button class="btn btn-default" type="button">Details</button></a>
           <div class="dropdown pull-right dropdown-kebab-pf" dropdown *ngIf="hasRole('admin') || hasRoleForService('manager', service)">
             <button id="dropdownKebabRight" class="btn btn-link dropdown-toggle" type="button" dropdownToggle aria-controls="dropdown-actions">
               <span class="fa fa-ellipsis-v"></span>

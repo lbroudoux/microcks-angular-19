@@ -22,7 +22,7 @@ import {
   signal
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -74,6 +74,7 @@ import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    RouterLink,
     PaginationModule,
     ToolbarModule,
     ToastNotificationListComponent,
