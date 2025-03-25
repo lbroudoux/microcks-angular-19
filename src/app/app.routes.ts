@@ -8,6 +8,7 @@ import { TestCreatePageComponent } from './pages/tests/create/test-create.page';
 import { TestRunnerPageComponent } from './pages/tests/runner/test-runner.page';
 import { TestDetailPageComponent } from './pages/tests/{testId}/test-detail.page';
 import { ImportersPageComponent } from './pages/importers/importers.page';
+import { AdminPageComponent } from './pages/admin/admin.page';
 
 export const routes: Routes = [
   {
@@ -41,5 +42,9 @@ export const routes: Routes = [
   {
     path: 'importers',
     component: ImportersPageComponent
+  },
+  {
+    path: 'admin',
+    component: AdminPageComponent
   }
 ];
