@@ -16,9 +16,9 @@
 import { SecretRef } from './secret.model';
 
 export enum OAuth2GrantType {
-  PASSWORD,
-  CLIENT_CREDENTIALS,
-  REFRESH_TOKEN
+  PASSWORD = 'PASSWORD',
+  CLIENT_CREDENTIALS = 'CLIENT_CREDENTIALS',
+  REFRESH_TOKEN = 'REFRESH_TOKEN'
 }
 
 export type OAuth2ClientContext = {
@@ -29,7 +29,7 @@ export type OAuth2ClientContext = {
   username: string;
   password: string;
   refreshToken: string;
-  grantType: OAuth2GrantType;
+  grantType: OAuth2GrantType | undefined;
 }
 
 export type OAuth2AuthorizedClient = {
@@ -44,7 +44,7 @@ export type TestRequest = {
   testEndpoint: string;
   runnerType: TestRunnerType;
   operationsHeaders: any;
-  oAuth2Context: OAuth2ClientContext;
+  oAuth2Context: OAuth2ClientContext | undefined;
 }
 
 export type TestResult = {
