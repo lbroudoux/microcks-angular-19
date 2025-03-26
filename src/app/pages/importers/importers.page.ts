@@ -26,9 +26,11 @@ import {
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+/*
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+*/
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -75,9 +77,9 @@ import { ServiceRefsDialogComponent } from './service-refs.dialog';
     BsDropdownModule,
     DatePipe,
     FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
+    //MatButtonModule,
+    //MatFormFieldModule,
+    //MatInputModule,
     PaginationModule,
     ToolbarModule,
     ToastNotificationListComponent,

@@ -24,9 +24,11 @@ import {
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
+/*
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+*/
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -57,7 +59,6 @@ import { IAuthenticationService } from '../../services/auth.service';
 import { ConfigService } from '../../services/config.service';
 import { ServicesService } from '../../services/services.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DirectApiDialogComponent } from './dialogs/direct-api-dialog/direct-api-dialog.component';
 import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
 
 @Component({
@@ -71,9 +72,9 @@ import { DirectAPIWizardComponent } from './_components/direct-api.wizard';
     BsDropdownModule,
     DatePipe,
     FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
+    //MatButtonModule,
+    //MatFormFieldModule,
+    //MatInputModule,
     RouterLink,
     PaginationModule,
     ToolbarModule,
@@ -92,10 +93,6 @@ export class ServicesPageComponent implements OnInit {
   nameFilterTerm: string | null = null;
   repositoryFilter: string | null = null;
   notifications: Notification[] = [];
-
-  readonly animal = signal('');
-  readonly name = model('');
-  readonly dialog = inject(MatDialog);
 
   html = '';
 
@@ -308,13 +305,6 @@ export class ServicesPageComponent implements OnInit {
 
     this.modalRef.content.saveDirectAPIAction.subscribe((api: Api) => {
       this.createDirectAPI(api.type, api);
-    });
-  }
-
-  openCreateDirectApiDialogNew(): void {
-    this.dialog.open(DirectApiDialogComponent, {
-      maxWidth: '750px',
-      data: { save: this.createDirectAPI.bind(this) },
     });
   }
 
