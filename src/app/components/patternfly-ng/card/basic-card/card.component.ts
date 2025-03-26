@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { CardAction } from '../card-action/card-action';
 import { CardBase } from '../card-base';

@@ -8,7 +8,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { Action } from '../action/action';
 import { EmptyStateConfig } from './empty-state-config';

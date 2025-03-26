@@ -13,7 +13,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { cloneDeep, defaults, isEqual, uniqueId } from 'lodash';
+import { cloneDeep, defaults, isEqual, uniqueId } from 'lodash-es';
 
 import { ListBase } from '../list-base';
 import { ListConfig } from './list-config';

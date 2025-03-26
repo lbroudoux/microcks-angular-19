@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { InfoStatusCardConfig } from './info-status-card-config';
 

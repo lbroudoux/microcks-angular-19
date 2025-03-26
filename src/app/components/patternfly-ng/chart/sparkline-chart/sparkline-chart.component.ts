@@ -6,7 +6,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
+import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash-es';
 
 import { ChartBase } from '../chart-base';
 import { ChartDefaults } from '../chart-defaults';

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash-es';
 
 import { Action } from '../action/action';
 import { Filter } from '../filter/filter';

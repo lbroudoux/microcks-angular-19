@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
-import { clone, cloneDeep, defaults, isEqual } from 'lodash';
+import { clone, cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';

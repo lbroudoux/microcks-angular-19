@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipDirective } from 'ngx-bootstrap/tooltip';
 
-import { cloneDeep, defaults, find, isEqual } from 'lodash';
+import { cloneDeep, defaults, find, isEqual } from 'lodash-es';
 
 import { FilterConfig } from './filter-config';
 import { FilterEvent } from './filter-event';

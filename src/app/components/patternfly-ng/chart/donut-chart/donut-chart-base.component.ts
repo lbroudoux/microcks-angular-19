@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash';
+import { cloneDeep, defaultsDeep, isEqual, merge, uniqueId } from 'lodash-es';
 
 import * as d3 from 'd3';
 

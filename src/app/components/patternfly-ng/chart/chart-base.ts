@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import * as c3 from 'c3';
 
 import { ChartConfigBase } from './chart-config-base';

@@ -10,7 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { PaginationConfig } from './pagination-config';
 import { PaginationEvent } from './pagination-event';

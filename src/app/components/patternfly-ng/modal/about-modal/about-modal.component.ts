@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { cloneDeep, defaults, isEqual } from 'lodash';
+import { cloneDeep, defaults, isEqual } from 'lodash-es';
 
 import { AboutModalConfig } from './about-modal-config';
 import { AboutModalEvent } from './about-modal-event';

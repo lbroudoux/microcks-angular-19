@@ -9,7 +9,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { cloneDeep, defaults, find, isEqual, remove } from 'lodash';
+import { cloneDeep, defaults, find, isEqual, remove } from 'lodash-es';
 
 import { Filter } from './filter';
 import { FilterConfig } from './filter-config';
