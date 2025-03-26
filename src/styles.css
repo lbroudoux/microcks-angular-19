@@ -226,17 +226,6 @@ pre.hljs {
   padding: 0.5em;
 }
 
-/* Angular material */
-/*
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-body {
-  --mdc-dialog-container-shape: 0;
-  --mdc-dialog-container-color: #fff;
-}
-*/
-
 /* Missing from patternfly.css to ensure compatibility with ngx-bootstrap */
 /* It was .modal-backdrop.in before */
 .modal-backdrop.show {
@@ -311,6 +300,30 @@ body {
 }
 .padding-right-10 {
   padding-right: 10px !important;
+}
+
+/* Angular material icons for the stepper */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./lib/fonts/MaterialIcons.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
 /** Reajust the Material elements style on Patternly */

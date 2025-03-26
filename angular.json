@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/webapp-new",
+            "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -33,7 +33,6 @@
               "./node_modules/patternfly/dist/css/patternfly.min.css",
               "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
               "./node_modules/highlight.js/styles/github.min.css",
-              //"./node_modules/highlight.js/styles/github-dark.min.css",
               "src/lib/patternfly-ng.css",
               "src/styles.css"
             ],
@@ -41,7 +40,6 @@
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/patternfly/dist/js/patternfly.min.js"
-              //"src/lib/patternfly.js"
             ]
           },
           "configurations": {
@@ -75,10 +73,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "webapp-new:build:production"
+              "buildTarget": "microcks-ui:build:production"
             },
             "development": {
-              "buildTarget": "webapp-new:build:development"
+              "buildTarget": "microcks-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
