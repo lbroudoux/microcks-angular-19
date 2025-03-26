@@ -6,6 +6,7 @@ import { ServiceDetailPageComponent } from './pages/services/{serviceId}/service
 import { TestsPageComponent } from './pages/tests/tests.page';
 import { TestCreatePageComponent } from './pages/tests/create/test-create.page';
 import { TestRunnerPageComponent } from './pages/tests/runner/test-runner.page';
+import { InvocationsServicePageComponent } from './pages/metrics/invocations/{serviceId}/invocations-service.page';
 import { TestDetailPageComponent } from './pages/tests/{testId}/test-detail.page';
 import { ImportersPageComponent } from './pages/importers/importers.page';
 import { AdminPageComponent } from './pages/admin/admin.page';
@@ -38,6 +39,10 @@ export const routes: Routes = [
   {
     path: 'tests/:testId',
     component: TestDetailPageComponent
+  },
+  {
+    path: 'metrics/invocations/:serviceName/:serviceVersion',
+    component: InvocationsServicePageComponent
   },
   {
     path: 'importers',
